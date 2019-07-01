@@ -1,0 +1,23 @@
+{
+  "name": "fronter",
+  "version": "1.0.0",
+  "description": "system for front-developer to mock, publish and mititor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aisaJerry/fronter.git"
+  },
+  "author": "jerry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aisaJerry/fronter/issues"
+  },
+  "homepage": "https://github.com/aisaJerry/fronter#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "typescript": "^3.5.2"
+  }
+}
