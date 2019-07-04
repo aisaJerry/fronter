@@ -7,7 +7,7 @@ const autoprefixer = require('autoprefixer');
 
 const config = {
     entry: {
-        app: path.resolve(__dirname, '../src/index.js')
+        app: path.resolve(__dirname, '../src/index.tsx')
     },
     output: {
         filename: '[name].[hash:10].js',
@@ -57,6 +57,10 @@ const config = {
                 test: /\.js|jsx$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
+            },
+            {
+                test: /\.tsx$/,
+                use: ['ts-loader']
             },
             {
                 test: /\.css$/,
