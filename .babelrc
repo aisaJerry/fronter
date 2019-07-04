@@ -1,0 +1,10 @@
+{
+  "presets": [
+    ["es2015", {"moudles": false}],
+    "stage-2",
+    "react"
+  ],
+  "plugins": [
+      "transform-runtime"
+  ]
+}
