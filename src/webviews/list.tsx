@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 interface IListState {
     text: String
@@ -17,7 +18,9 @@ class List extends Component <IListProp, IListState> {
     render() {
         const text = this.state.text;
         return (
-            <div>{text}</div>
+            <div>
+                <Link to='/'>go home</Link>
+            </div>
         )
     }
 }
