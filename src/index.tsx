@@ -1,32 +1,53 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import ReactDOM from 'react-dom';
-import './index.scss';
+import home from './webviews/home';
+import list from './webviews/list';
 
-interface IButtonState {
-    text: String,
-    isOn: Boolean
-}
-
-interface IButtonProp {}
-
-class Button extends React.Component <IButtonProp, IButtonState> {
-    constructor (props: IButtonProp) {
-        super(props);
-        this.state = {
-            isOn: false, 
-            text: 'hello'
-        }
+const routes = [
+    {
+        path: '/list',
+        component: list
     }
-    showThis(p:string) {
-        console.log(this);
-        console.log(p)
+]
+
+interface IAppState {}
+
+interface IAppProp {}
+
+class App extends Component <IAppProp, IAppState> {
+    constructor (props: IAppProp) {
+        super(props);
     }
     render() {
-        const text = this.state.text;
         return (
-            <h1 onClick={this.showThis.bind(this, '123')}>{text}</h1>
+            <Router>
+                <Switch>
+                    <Route exact path = '/' component = { home } ></Route>
+                    {/* {routes.map((route, i) => (
+                        <RouteWithSubRoutes key={i} {...route} />
+                    ))} */}
+                    {routes.map((route, i)=>(
+                        <Route exact key={i} path={route.path} render={props => (
+                            <route.component {...props} />
+                        )}></Route>
+                    ))}
+                </Switch>
+            </Router>
         )
     }
 }
 
-ReactDOM.render(<Button/>, document.getElementById('app'))
+// function RouteWithSubRoutes(route: any) {
+//     return (
+//       <Route
+//         path={route.path}
+//         render={props => (
+//           // pass the sub-routes down to keep nesting
+//           <route.component {...props} routes={route.routes} />
+//         )}
+//       />
+//     );
+// }
+
+ReactDOM.render(<App/>, document.getElementById('app'))

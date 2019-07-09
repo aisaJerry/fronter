@@ -56,11 +56,13 @@ const config = {
             {
                 test: /\.js|jsx$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.tsx$/,
-                use: ['ts-loader']
+                use: ['ts-loader'],
+                exclude: /node_modules/
             },
             {
                 test: /\.css$/,
@@ -81,7 +83,11 @@ const config = {
                 loader: 'file-loader'
             },
          ]
+     },
+     resolve: {
+        extensions: [ '.tsx', '.ts', '.js' ]
      }
+     
 }
 
 if (process.env.npm_config_report) {

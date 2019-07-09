@@ -4,7 +4,7 @@
   "description": "empty",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server --config complie/webpack.config.js --host 0.0.0.0 --port 8888 --colors --hot --inline",
+    "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server --config complie/webpack.config.js --host 0.0.0.0 --port 8888 --colors --hot --inline --historyApiFallback true",
     "build": "NODE_ENV=pro rimraf ./dist/ && webpack --config complie/webpack.config.js -p"
   },
   "repository": {
@@ -19,11 +19,14 @@
   "homepage": "https://github.com/aisaJerry/fronter#readme",
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
+    "@types/react-router": "^5.0.3",
+    "@types/react-router-dom": "^4.3.4",
     "autoprefixer": "^6.3.7",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
@@ -36,9 +39,11 @@
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.5.0",
     "postcss-loader": "^0.9.1",
+    "react-router-dom": "^5.0.1",
     "sass-loader": "^5.0.1",
     "style-loader": "^0.13.1",
     "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
     "webpack": "4.29.6",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.5",
