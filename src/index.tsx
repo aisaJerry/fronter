@@ -1,12 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 
-class Button extends React.Component {
-    constructor (props: Object) {
+interface IButtonState {
+    text: String,
+    isOn: Boolean
+}
+
+interface IButtonProp {}
+
+class Button extends React.Component <IButtonProp, IButtonState> {
+    constructor (props: IButtonProp) {
         super(props);
         this.state = {
-            isOn: false
+            isOn: false, 
+            text: 'hello'
         }
     }
     showThis(p:string) {
@@ -14,8 +22,9 @@ class Button extends React.Component {
         console.log(p)
     }
     render() {
+        const text = this.state.text;
         return (
-            <h1 onClick={this.showThis.bind(this, '123')}>Hello</h1>
+            <h1 onClick={this.showThis.bind(this, '123')}>{text}</h1>
         )
     }
 }
