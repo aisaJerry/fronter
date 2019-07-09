@@ -6,9 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const config = {
-    entry: {
-        app: path.resolve(__dirname, '../src/index.tsx')
-    },
+    entry: './src/index.tsx',
     output: {
         filename: '[name].[hash:10].js',
         path: path.resolve(__dirname, '../dist'),
@@ -21,14 +19,21 @@ const config = {
         splitChunks: {
             chunks: 'all',
             cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10
+                default: false,
+                vendors: false,
+                vendor: {
+                    name: 'vendor',
+                    chunks: 'all',
+                    test: /node_modules/,
+                    priority: 20
                 },
-                default: {
+                common: {
+                    name: 'common',
                     minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
+                    chunks: 'all',
+                    priority: 10,
+                    reuseExistingChunk: true,
+                    enforce: true
                 }
             }
         }

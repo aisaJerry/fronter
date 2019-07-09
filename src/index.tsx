@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import React, {Component, lazy, Suspense} from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import home from './webviews/home';
-import list from './webviews/list';
+
+let list = lazy(() => import (/* webpackChunkName: 'list' */ './webviews/list'));
 
 const routes = [
     {
         path: '/list',
-        component: list
+        component: lazy(() => import (/* webpackChunkName: 'list' */ './webviews/list'))
     }
 ]
 
@@ -22,32 +23,21 @@ class App extends Component <IAppProp, IAppState> {
     render() {
         return (
             <Router>
+                <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                     <Route exact path = '/' component = { home } ></Route>
-                    {/* {routes.map((route, i) => (
-                        <RouteWithSubRoutes key={i} {...route} />
-                    ))} */}
-                    {routes.map((route, i)=>(
+                    <Route exact path = '/list' component = { list } ></Route>
+                    {/* {routes.map((route, i)=>(
                         <Route exact key={i} path={route.path} render={props => (
                             <route.component {...props} />
                         )}></Route>
-                    ))}
+                    ))} */}
                 </Switch>
+                </Suspense>
             </Router>
         )
     }
 }
 
-// function RouteWithSubRoutes(route: any) {
-//     return (
-//       <Route
-//         path={route.path}
-//         render={props => (
-//           // pass the sub-routes down to keep nesting
-//           <route.component {...props} routes={route.routes} />
-//         )}
-//       />
-//     );
-// }
 
 ReactDOM.render(<App/>, document.getElementById('app'))
