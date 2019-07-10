@@ -20,8 +20,7 @@ const config = {
             chunks: 'all',
             cacheGroups: {
                 default: false,
-                vendors: false,
-                vendor: {
+                vendors: {
                     name: 'vendor',
                     chunks: 'all',
                     test: /node_modules/,
