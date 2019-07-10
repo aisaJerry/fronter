@@ -1,37 +1,5 @@
-import React, {Component, lazy, Suspense} from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-
-let home = lazy(() => import ('./webviews/home'));
-
-const routes = [
-    {
-        path: '/list',
-        component: lazy(() => import ('./webviews/list'))
-    }
-]
-
-class App extends Component<{}, {}> {
-    constructor(props: any) {
-        super(props);
-    }
-    render() {
-        return(
-            <Router>
-                <Suspense fallback={<div>Loading...</div>}>
-                <Switch>
-                    <Route exact path = '/' component = { home } ></Route>
-                    {routes.map((route, i)=>(
-                        <Route exact key={i} path={route.path} render={props => (
-                            <route.component {...props} />
-                        )}></Route>
-                    ))}
-                </Switch>
-                </Suspense>
-            </Router>
-        )
-    }
-}
+import App from './app';
 
 ReactDOM.render(<App/>, document.getElementById('app'))

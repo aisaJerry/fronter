@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 
 interface IHomeState {
-    text: String
+    text: string,
+    className: string,
 }
 
 interface IHomeProp {
@@ -12,7 +13,8 @@ class Home extends Component <IHomeProp, IHomeState> {
     constructor(props: IHomeProp) {
         super(props);
         this.state = {
-            text: 'go detail'
+            text: 'go detail',
+            className: 'red'
         }
         this.goList = this.goList.bind(this);
     }
@@ -24,7 +26,7 @@ class Home extends Component <IHomeProp, IHomeState> {
     render() {
         const text = this.state.text;
         return (
-            <h1 onClick={this.goList}>{text}</h1>
+            <div className={this.state.className} onClick={this.goList}>{text}</div>
         )
     }
 }
