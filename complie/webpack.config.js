@@ -26,20 +26,6 @@ const config = {
                     chunks: 'all',
                     test: /node_modules/,
                     priority: 20
-                },
-                styles: {
-                    name: 'style',
-                    test: /\.css|.scss$/,
-                    chunks: 'all',
-                    enforce: true,
-                  },
-                common: {
-                    name: 'common',
-                    minChunks: 2,
-                    chunks: 'all',
-                    priority: 10,
-                    reuseExistingChunk: true,
-                    enforce: true
                 }
             }
         }
