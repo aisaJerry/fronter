@@ -1,6 +1,7 @@
 import React, {Component, lazy, Suspense} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom';
+import './index.scss';
 
 let home = lazy(() => import (/* webpackChunkName: 'home' */ './webviews/home'));
 

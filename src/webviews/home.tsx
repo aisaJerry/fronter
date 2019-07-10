@@ -24,7 +24,7 @@ class Home extends Component <IHomeProp, IHomeState> {
     render() {
         const text = this.state.text;
         return (
-            <div onClick={this.goList}>{text}</div>
+            <h1 onClick={this.goList}>{text}</h1>
         )
     }
 }

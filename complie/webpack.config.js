@@ -1,9 +1,8 @@
 const path = require('path');
-const webpack  = require('webpack');
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const InlineManifestWebpackPlugin = require('webpack-inline-manifest-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
     entry: './src/index.tsx',
@@ -26,6 +25,12 @@ const config = {
                     test: /node_modules/,
                     priority: 20
                 },
+                styles: {
+                    name: 'app',
+                    test: /\.css|.scss$/,
+                    chunks: 'all',
+                    enforce: true,
+                  },
                 common: {
                     name: 'common',
                     minChunks: 2,
@@ -47,13 +52,12 @@ const config = {
             name: 'webpackManifest',
             deleteFile: true
         }),
-        // 抽离css
-        new ExtractTextPlugin('[name].[hash:10].css'),
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: [autoprefixer({browsers: ['last 20 versions']})]
-            }
-        })
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css',
+          }),
     ],
     module: {
          rules: [
@@ -64,18 +68,20 @@ const config = {
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader']
-                })
-            },
-            {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader']
-                })
+                use: [
+                     MiniCssExtractPlugin.loader,
+                     "css-loader", // translates CSS into CommonJS modules
+                    {
+                        loader: "postcss-loader", // Run post css actions
+                        options: {
+                            plugins: function () { // post css plugins, can be exported to postcss.config.js
+                                return [autoprefixer({browsers: ['last 20 versions']})];
+                            }
+                        }
+                    },
+                    "sass-loader" // compiles Sass to CSS
+                ]
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
