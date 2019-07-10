@@ -55,16 +55,16 @@ const config = {
                 test: /\.scss$/,
                 use: [
                      MiniCssExtractPlugin.loader,
-                     "css-loader", // translates CSS into CommonJS modules
+                     "css-loader",
                     {
-                        loader: "postcss-loader", // Run post css actions
+                        loader: "postcss-loader",
                         options: {
-                            plugins: function () { // post css plugins, can be exported to postcss.config.js
+                            plugins: function () {
                                 return [autoprefixer({browsers: ['last 20 versions']})];
                             }
                         }
                     },
-                    "sass-loader" // compiles Sass to CSS
+                    "sass-loader"
                 ]
             },
             {
