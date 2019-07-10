@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import './index.scss';
 
-let home = lazy(() => import (/* webpackChunkName: 'home' */ './webviews/home'));
+let home = lazy(() => import ('./webviews/home'));
 
 const routes = [
     {
         path: '/list',
-        component: lazy(() => import (/* webpackChunkName: 'list' */ './webviews/list'))
+        component: lazy(() => import ('./webviews/list'))
     }
 ]
 

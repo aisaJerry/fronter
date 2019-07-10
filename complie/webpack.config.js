@@ -1,11 +1,13 @@
 const path = require('path');
 const htmlWebpackPlugin = require("html-webpack-plugin");
-const InlineManifestWebpackPlugin = require('webpack-inline-manifest-plugin');
+const InlineManifestWebpackPlugin = require('./inlineManifest');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
-    entry: './src/index.tsx',
+    entry: {
+        app: path.resolve(__dirname, '../src/index.tsx')
+    },
     output: {
         filename: '[name].[hash:10].js',
         path: path.resolve(__dirname, '../dist'),
@@ -26,7 +28,7 @@ const config = {
                     priority: 20
                 },
                 styles: {
-                    name: 'app',
+                    name: 'style',
                     test: /\.css|.scss$/,
                     chunks: 'all',
                     enforce: true,
@@ -45,18 +47,14 @@ const config = {
     plugins: [
         new htmlWebpackPlugin({
             template: path.resolve(__dirname, "../src/index.html"),
-            filename: "index.html",
-            excludeChunks: ['manifest'] 
+            filename: "index.html"
         }),
         new InlineManifestWebpackPlugin({
-            name: 'webpackManifest',
-            deleteFile: true
+            name: 'webpackManifest'
         }),
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: '[name].[hash].css',
-            chunkFilename: '[id].[hash].css',
+            filename: '[name].[hash:10].css',
+            chunkFilename: '[name].[hash:5].css',
           }),
     ],
     module: {
