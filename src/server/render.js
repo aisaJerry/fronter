@@ -5,11 +5,12 @@ import ReactDOMServer from 'react-dom/server';
 import Loadable from 'react-loadable';
 //下面这个是需要让react-loadable在服务端可运行需要的，下面会讲到
 import { getBundles } from 'react-loadable/webpack';
-import stats from '../build/react-loadable.json';
+
+import stats from '../../react-loadable.json';
  
 //这里吧react-router的路由设置抽出去，使得在浏览器跟服务端可以共用
 //下面也会讲到...
-import AppRoutes from 'src/AppRoutes';
+import AppRoutes from '../../src/AppRoutes';
  
 //这里我们创建一个简单的class，暴露一些方法出去，然后在koa路由里去调用来实现服务端渲染
 class SSR {

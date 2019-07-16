@@ -1,7 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const SSR = require('../../distSSR/ssr.js');
-console.log(SSR);
 SSR.preloadAll();
 const app = new Koa();
 const router = new Router();

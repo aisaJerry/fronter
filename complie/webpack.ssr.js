@@ -7,9 +7,9 @@ const nodeExternals = require('webpack-node-externals');
 const config = {
     target: 'node',
     entry: {
-        app: path.resolve(__dirname, '../src/app.tsx')
+        app: path.resolve(__dirname, '../src/server/render.js')
     },
-    externals: [nodeExternals()],
+    externals: [nodeExternals({whitelist: [/.css$/]})],
     output: {
         filename: 'ssr.js',
         path: path.resolve(__dirname, '../distSSR'),
