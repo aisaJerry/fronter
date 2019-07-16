@@ -1,51 +1,31 @@
 const path = require('path');
 const htmlWebpackPlugin = require("html-webpack-plugin");
-const InlineManifestWebpackPlugin = require('./inlineManifest');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const reactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
+const nodeExternals = require('webpack-node-externals');
 
 const config = {
+    target: 'node',
     entry: {
-        app: path.resolve(__dirname, '../src/index.tsx')
+        app: path.resolve(__dirname, '../src/app.tsx')
     },
+    externals: [nodeExternals()],
     output: {
-        filename: '[name].[hash:10].js',
-        path: path.resolve(__dirname, '../dist'),
-        chunkFilename: '[name].[chunkhash:5].js'
-    },
-    optimization: {
-        runtimeChunk: {
-            name: "manifest"
-        },
-        splitChunks: {
-            chunks: 'all',
-            cacheGroups: {
-                default: false,
-                vendors: {
-                    name: 'vendor',
-                    chunks: 'all',
-                    test: /node_modules/,
-                    priority: 20
-                }
-            }
-        }
+        filename: 'ssr.js',
+        path: path.resolve(__dirname, '../distSSR'),
+        // chunkFilename: '[name].[chunkhash:5].js',
+        libraryExport: 'default',
+        libraryTarget: 'commonjs2',
     },
     plugins: [
         new htmlWebpackPlugin({
             template: path.resolve(__dirname, "../src/index.html"),
             filename: "index.html"
         }),
-        new InlineManifestWebpackPlugin({
-            name: 'webpackManifest'
-        }),
         new MiniCssExtractPlugin({
             filename: '[name].[hash:10].css',
             chunkFilename: '[name].[hash:5].css',
           }),
-        new reactLoadablePlugin({
-            filename: './react-loadable.json',
-        }),
     ],
     module: {
          rules: [
@@ -86,11 +66,6 @@ const config = {
         mainFiles: ["index"]
      }
      
-}
-
-if (process.env.npm_config_report) {
-    let BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-    config.plugins.push(new BundleAnalyzerPlugin());
 }
 
 module.exports = config;

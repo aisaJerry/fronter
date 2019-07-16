@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button } from 'antd'
+// import { Button } from 'antd'
 
 interface IHomeState {
     text: string,
@@ -31,7 +31,7 @@ class Home extends Component <IHomeProp, IHomeState> {
                 <div className={this.state.className} onClick={this.goList}>
                     {text}
                 </div>
-                <Button type="primary">Button</Button>
+                {/* <Button type="primary">Button</Button> */}
             </div>
         )
     }
