@@ -1,8 +1,13 @@
-import React, {Component, lazy, Suspense} from 'react';
+import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import home from './webviews/home';
-import routes from './routes';
+import Loadable from 'react-loadable';
 import './app.scss';
+
+const List = Loadable({
+    loading() { return <div>Loading</div> },
+    loader: () => import('./webviews/list'),
+})
 
 class App extends Component<{}, {}> {
     constructor(props: any) {
@@ -11,20 +16,10 @@ class App extends Component<{}, {}> {
     render() {
         return(
             <Router>
-                <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
-                    <Route exact path = '/' component = { home } ></Route>
-                    {routes.map((route, i)=>(
-                        <Route exact key={i} path={`/${route}`} render={
-                            props => {
-                                let Component = lazy(() => import (`./webviews/${route}`));
-                                return (<Component {...props} />)
-                            }
-                        }>
-                        </Route>
-                    ))}
+                    <Route exact path = '/' component = { home } />
+                    <Route path = '/list' component = { List } />
                 </Switch>
-                </Suspense>
             </Router>
         )
     }
