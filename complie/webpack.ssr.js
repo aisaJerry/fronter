@@ -33,7 +33,6 @@ const config = {
                 test: /\.js|jsx|tsx$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
             },
             {
                 test: /\.scss$/,

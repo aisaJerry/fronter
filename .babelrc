@@ -3,7 +3,7 @@
   "plugins": [
     ["import", { "libraryName": "antd", "style": "css" }],
     "@babel/plugin-syntax-dynamic-import",
-    "react-loadable/babel",
+    "@loadable/babel-plugin",
     "@babel/plugin-transform-runtime"
   ]
 }

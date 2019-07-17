@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import home from './webviews/home';
-import Loadable from 'react-loadable';
+import Loadable from '@loadable/component';
 import './app.scss';
 
-const List = Loadable({
-    loading() { return <div>Loading</div> },
-    loader: () => import('./webviews/list'),
-})
+const Loading = <h3>Loading...</h3>;
+const List = Loadable(
+    () => import('./webviews/list'),
+    { fallback: Loading, }
+  );
 
 class AppRoutes extends Component {
     render() {
         return (
                 <Switch>
                     <Route exact path = '/' component = { home } />
-                    <Route path = '/list' component = { List } />
+                    <Route path = '/list' render={props => <List {...props}/>} />
                 </Switch>
         )
     }
