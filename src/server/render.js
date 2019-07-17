@@ -5,7 +5,8 @@ import { ChunkExtractor } from '@loadable/server';
 import AppRoutes from '../appRoutes.tsx';
 
 function render(url, initialData = {}) {
-  const extractor = new ChunkExtractor({ statsFile: path.resolve('../../react-loadable.json') });
+  let file = path.resolve('./react-loadable.json');
+  const extractor = new ChunkExtractor({ statsFile: file});
   const jsx = extractor.collectChunks(
     <StaticRouter location={url}>
       <AppRoutes initialData={data} />

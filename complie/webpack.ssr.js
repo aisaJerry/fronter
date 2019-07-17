@@ -9,24 +9,12 @@ const config = {
     entry: {
         app: path.resolve(__dirname, '../src/server/render.js')
     },
-    externals: [nodeExternals({whitelist: [/.css$/]})],
     output: {
         filename: 'ssr.js',
         path: path.resolve(__dirname, '../distSSR'),
-        // chunkFilename: '[name].[chunkhash:5].js',
         libraryExport: 'default',
         libraryTarget: 'commonjs2',
     },
-    plugins: [
-        new htmlWebpackPlugin({
-            template: path.resolve(__dirname, "../src/index.html"),
-            filename: "index.html"
-        }),
-        new MiniCssExtractPlugin({
-            filename: '[name].[hash:10].css',
-            chunkFilename: '[name].[hash:5].css',
-          }),
-    ],
     module: {
          rules: [
             {

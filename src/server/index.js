@@ -5,8 +5,9 @@ const router = new Router();
 
 const SSR = require('../../distSSR/ssr.js');
 
+
 router.get('*', async (ctx) => {
- const rendered = SSR.render(ctx.url);
+ const rendered = SSR(ctx.url);
  ctx.body = rendered;
 
 });
