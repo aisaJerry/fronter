@@ -1,10 +1,11 @@
 import path from 'path';
+import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import ReactDOMServer from 'react-dom/server';
 import { ChunkExtractor } from '@loadable/server';
 import AppRoutes from '../appRoutes.tsx';
 
-function render(url, initialData = {}) {
+function render(url, data = {}) {
   let file = path.resolve('./react-loadable.json');
   const extractor = new ChunkExtractor({ statsFile: file});
   const jsx = extractor.collectChunks(
