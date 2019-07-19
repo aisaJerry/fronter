@@ -3,7 +3,6 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const InlineManifestWebpackPlugin = require('./inlineManifest');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const reactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
 
 const config = {
     entry: {
@@ -43,9 +42,6 @@ const config = {
             filename: '[name].[hash:10].css',
             chunkFilename: '[name].[hash:5].css',
           }),
-        new reactLoadablePlugin({
-            filename: './react-loadable.json',
-        }),
     ],
     module: {
          rules: [
