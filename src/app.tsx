@@ -7,7 +7,6 @@ class App extends React.Component {
   public render() {
     return (
       <div>
-        <div className="title">This is a react ssr demo</div>
         <div className="view">
           <Switch>
             {

@@ -5,6 +5,7 @@ const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const reactLoadablePlugin = require("@loadable/webpack-plugin");
 
+const resolve = relativePath => path.resolve(__dirname, relativePath);
 const config = {
     entry: {
         app: path.resolve(__dirname, '../src/index.tsx')
@@ -37,9 +38,9 @@ const config = {
             template: path.resolve(__dirname, "../src/index.html"),
             filename: "index.html"
         }),
-        new InlineManifestWebpackPlugin({
-            name: 'webpackManifest'
-        }),
+        // new InlineManifestWebpackPlugin({
+        //     name: 'webpackManifest'
+        // }),
         new MiniCssExtractPlugin({
             filename: '[name].[hash:10].css',
             chunkFilename: '[name].[hash:5].css',
@@ -51,10 +52,34 @@ const config = {
     module: {
          rules: [
             {
-                test: /\.js|jsx|tsx$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
+                test: /\.(ts|tsx)$/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                        babelrc: false,
+                        presets: [
+                            [
+                            "@babel/preset-env",  // @loadable/babel-plugin处理后存在es6的语法
+                            {
+                                "modules": false
+                            }
+                            ]
+                        ],
+                        plugins: [
+                            "@loadable/babel-plugin"
+                        ]
+                        }
+                    },
+                    {
+                        loader: "ts-loader",
+                        options: {
+                        // 支持HMR和禁用类型检查，类型检查将使用ForkTsCheckerWebpackPlugin
+                        transpileOnly: true  
+                        }
+                    }
+                ],
+                include: [ resolve("../src") ]
             },
             {
                 test: /\.scss$/,

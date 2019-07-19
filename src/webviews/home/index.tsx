@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import * as React from "react";
 // import { Button } from 'antd'
 
 interface IHomeState {
@@ -10,7 +10,7 @@ interface IHomeProp {
     history: any
 }
 
-class Home extends Component <IHomeProp, IHomeState> {
+class Home extends React.Component <IHomeProp, IHomeState> {
     constructor(props: IHomeProp) {
         super(props);
         this.state = {

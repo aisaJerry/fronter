@@ -23,9 +23,26 @@ const config = {
     module: {
          rules: [
             {
-                test: /\.js|jsx|tsx$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
+                test: /\.(ts|tsx)$/,
+                use: [
+                  {
+                    loader: "babel-loader",
+                    options: {
+                      babelrc: false,
+                      plugins: [
+                        "dynamic-import-node",
+                        "@loadable/babel-plugin"
+                      ]
+                    }
+                  },
+                  {
+                    loader: "ts-loader",
+                    options: {
+                      transpileOnly: true  // 只进行编译
+                    }
+                  }
+                ],
+                exclude: /node_modules/
             },
             {
                 test: /\.scss$/,
