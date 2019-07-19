@@ -3,7 +3,7 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const InlineManifestWebpackPlugin = require('./inlineManifest');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const reactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
+const reactLoadablePlugin = require("@loadable/webpack-plugin");
 
 const config = {
     entry: {
@@ -12,6 +12,7 @@ const config = {
     output: {
         filename: '[name].[hash:10].js',
         path: path.resolve(__dirname, '../dist'),
+        publicPath: "/dist/",
         chunkFilename: '[name].[chunkhash:5].js'
     },
     optimization: {
@@ -44,7 +45,7 @@ const config = {
             chunkFilename: '[name].[hash:5].css',
           }),
         new reactLoadablePlugin({
-            filename: './react-loadable.json',
+            filename: 'react-loadable.json',
         }),
     ],
     module: {

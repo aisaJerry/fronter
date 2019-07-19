@@ -1,5 +1,14 @@
-const routes = [
-    'list'
-]
+import loadable from "@loadable/component";
 
-export default routes;
+const router = [
+  {
+    path: "/",
+    component: loadable(() => import('./webviews/home'))
+  },
+  {
+    path: "/list",
+    component: loadable(() => import('./webviews/list'))
+  },
+];
+
+export default router;

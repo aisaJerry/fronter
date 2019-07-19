@@ -1,20 +1,25 @@
 const path = require('path');
-const htmlWebpackPlugin = require("html-webpack-plugin");
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
+const SSRServerPlugin = require("../plugin/webpack/server-plugin");
 
 const config = {
     target: 'node',
     entry: {
-        app: path.resolve(__dirname, '../src/server/render.js')
+        app: path.resolve(__dirname, '../src/server-index.tsx')
     },
     output: {
         filename: 'ssr.js',
-        path: path.resolve(__dirname, '../distSSR'),
-        libraryExport: 'default',
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: "/dist/",
         libraryTarget: 'commonjs2',
     },
+    externals: [
+        nodeExternals({
+          whitelist: [ /\.css$/ ]  // 忽略css，让webpack处理
+        })
+      ], 
     module: {
          rules: [
             {
@@ -48,9 +53,17 @@ const config = {
             },
          ]
      },
+     plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash:10].css',
+            chunkFilename: '[name].[hash:5].css',
+        }),
+        new SSRServerPlugin({
+            filename: "server-bundle.json"
+        })
+    ],
      resolve: {
         extensions: [ '.tsx', '.ts', '.js' ],
-        mainFiles: ["index"]
      }
      
 }
