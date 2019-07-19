@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Switch, Route } from 'react-router-dom'
 import home from './webviews/home';
 import Loadable from '@loadable/component';
-// import './app.scss';
+import './app.scss';
 
 const Loading = <h3>Loading...</h3>;
 const List = Loadable(
