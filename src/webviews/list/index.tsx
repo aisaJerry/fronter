@@ -19,7 +19,7 @@ class List extends Component <IListProp, IListState> {
         const text = this.state.text;
         return (
             <div>
-                <Link to='/'>go home</Link>
+                <Link to='/home'>go home</Link>
             </div>
         )
     }

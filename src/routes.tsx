@@ -2,7 +2,7 @@ import loadable from "@loadable/component";
 
 const router = [
   {
-    path: "/",
+    path: "/home",
     component: loadable(() => import('./webviews/home'))
   },
   {
