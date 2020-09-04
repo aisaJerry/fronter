@@ -62,7 +62,7 @@
     "koa": "^2.7.0",
     "koa-router": "^7.4.0",
     "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
     "react-loadable": "^5.5.0",
     "sass-loader": "^5.0.1",
