@@ -3,10 +3,11 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const InlineManifestWebpackPlugin = require('./inlineManifest');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = {
     entry: {
-        app: path.resolve(__dirname, '../src/index.tsx')
+        app: path.resolve(__dirname, '../src/index.js')
     },
     output: {
         filename: '[name].[hash:10].js',
@@ -41,7 +42,8 @@ const config = {
         new MiniCssExtractPlugin({
             filename: '[name].[hash:10].css',
             chunkFilename: '[name].[hash:5].css',
-          }),
+        }),
+        new VueLoaderPlugin()
     ],
     module: {
          rules: [
@@ -75,11 +77,19 @@ const config = {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader'
             },
+            {
+                test: /\.vue$/, 
+                loader: "vue-loader"
+            }
          ]
      },
      resolve: {
         extensions: [ '.tsx', '.ts', '.js' ],
-        mainFiles: ["index"]
+        mainFiles: ["index"],
+        alias: {
+            'vue$': 'vue/dist/vue.min.js',
+            'src': path.resolve(__dirname, '../src')
+          }
      }
      
 }
