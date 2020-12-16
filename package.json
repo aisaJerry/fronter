@@ -21,6 +21,7 @@
   "dependencies": {
     "@loadable/component": "^5.10.2",
     "@loadable/server": "^5.10.2",
+    "node-sass": "^5.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1"
@@ -62,7 +63,6 @@
     "koa": "^2.7.0",
     "koa-router": "^7.4.0",
     "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "react-loadable": "^5.5.0",
     "sass-loader": "^5.0.1",
