@@ -9,6 +9,7 @@ const routes = [
 
 const views = ['foo','ever'];
 
+// 按需加载
 views.forEach(item => {
 	routes.push({
 		path:`/${item}`,

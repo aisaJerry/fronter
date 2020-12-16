@@ -1,7 +1,6 @@
 {
-  "presets": ["@babel/env", "@babel/react", "@babel/typescript"],
+  "presets": ["@babel/env"],
   "plugins": [
-    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
     "@babel/plugin-syntax-dynamic-import",
     "@loadable/babel-plugin",
     "@babel/plugin-transform-runtime"
