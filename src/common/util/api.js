@@ -23,6 +23,7 @@ axios.interceptors.response.use(res => {
 export default  {
   get: (url, params, config) => {
     config = config || {};
+    params = params || '';
     const urlFixed = `${url}/${params}`;
     return axios.get(urlFixed, config);
   },

@@ -1,8 +1,12 @@
 {
   "presets": ["@babel/env"],
   "plugins": [
-    "@babel/plugin-syntax-dynamic-import",
-    "@loadable/babel-plugin",
-    "@babel/plugin-transform-runtime"
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
   ]
 }
