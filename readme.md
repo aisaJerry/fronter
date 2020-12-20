@@ -11,7 +11,7 @@ vue-router
 2. 打包： npm run build
 
 ## mock
-easymock
+待完善
 
 ## 私库组件
 暂无自定义组件
