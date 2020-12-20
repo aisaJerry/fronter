@@ -14,4 +14,5 @@ vue-router
 easymock
 
 ## 私库组件
+暂无自定义组件
 
