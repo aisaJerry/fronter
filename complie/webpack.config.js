@@ -1,7 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const InlineManifestWebpackPlugin = require('./inlineManifest');
-const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -56,16 +55,8 @@ const config = {
             {
                 test: /\.scss$/,
                 use: [
-                     MiniCssExtractPlugin.loader,
-                     "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            plugins: function () {
-                                return [autoprefixer({browsers: ['last 20 versions']})];
-                            }
-                        }
-                    },
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
                     "sass-loader"
                 ]
             },
@@ -84,16 +75,17 @@ const config = {
          ]
      },
      resolve: {
-        extensions: [ '.tsx', '.ts', '.js' ],
+        extensions: [ '.tsx', '.ts', '.js', '.vue'],
         mainFiles: ["index"],
         alias: {
             'vue$': 'vue/dist/vue.min.js',
-            'src': path.resolve(__dirname, '../src')
+            '@src': path.resolve(__dirname, '../src'),
+            '@components': path.resolve(__dirname, '../src/components'),
+            '@util': path.resolve(__dirname, '../src/common/util'),
           }
      }
      
 }
-
 if (process.env.npm_config_report) {
     let BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
     config.plugins.push(new BundleAnalyzerPlugin());
