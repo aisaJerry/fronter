@@ -9,6 +9,7 @@ vue-router
 ## 使用
 1. 启动： npm run dev 
 2. 打包： npm run build
+3. 打包分析： npm run build --report
 
 ## mock
 待完善
